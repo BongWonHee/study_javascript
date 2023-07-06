@@ -2,14 +2,9 @@
 
 
 
-function tablelist() {
-    const carinfor_obj = [
-        { "YEAR": "2020", "CAR_NAME": "Sonata", "CAR_INFOR_ID": "CI001", "COMPANY_ID": "C001" },
-        { "YEAR": "2021", "CAR_NAME": "Kona", "CAR_INFOR_ID": "CI002", "COMPANY_ID": "C002" },
-        { "YEAR": "2019", "CAR_NAME": "SM6", "CAR_INFOR_ID": "CI003", "COMPANY_ID": "C003" },
-        { "YEAR": "2022", "CAR_NAME": "3 Series", "CAR_INFOR_ID": "CI004", "COMPANY_ID": "C004" },
-        { "YEAR": "2020", "CAR_NAME": "Camry", "CAR_INFOR_ID": "CI005", "COMPANY_ID": "C005" }
-    ];
+function tablelist(data) {
+    const carinfor_obj = data;
+
 
     let outHtml = `<table>`;
     for (let car_hashmap of carinfor_obj) {
@@ -26,22 +21,30 @@ function tablelist() {
 // tablelist();
 //add keydown Event
 let keydownObject = document.querySelector("#keydownEnter");
-// 키보드를 입력하는 값을 event에 담김(keydow, click 등 명령어로 event 발생조건 설정가능)
+// 키보드의 Enter를 입력하면 값을 event에 담김(keydow, click 등 명령어로 event 발생조건 설정가능)
 keydownObject.addEventListener('keydown', (event) => {
     if (event.code == 'Enter') {
         console.log(`key down : ${event.code}`);
-        tablelist();
+        fetchCarInforselectall();
     }
 });
 
-let url = 'http://localhost:8080/selectAll/CI002';
-let request = fetch(url)
-    .then(response => {
-        response.json();
-    })
-    .then(data => {
-        console.log(data);
-    })
-    .catch((data) => { //fetch로 받은 문자열의 문제가 생겼을때 catch 해당 에러를 받아내다.
-        console.log(data);
-    });
+
+
+function fetchCarInforselectall() {
+    let getinputObject = document.querySelector("#keydownEnter");
+    let inputValue = getinputObject.value;
+    let url = `http://192.168.0.46:8080/selectAll/${inputValue}`;
+    let request = fetch(url)
+        .then((result) => {
+            return result.json();
+        })
+        .then((data) => {
+            console.log(data);
+            tablelist(data);
+        })
+        .catch((errorMeg) => { //fetch로 받은 문자열의 문제가 생겼을때 catch 해당 에러를 받아내다.
+            console.log(errorMeg);
+        });
+}
+
