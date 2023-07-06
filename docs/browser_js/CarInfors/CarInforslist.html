@@ -30,10 +30,7 @@
                     <a class="nav-link" href="#">기능3</a>
                 </li>
             </ul>
-            <form class="form-inline ml-auto">
-                <input class="form-control mr-sm-2" type="search" placeholder="검색" aria-label="Search">
-                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">검색</button>
-            </form>
+
         </div>
     </nav>
 
@@ -42,6 +39,8 @@
             <h1 class="display-4">자동차</h1>
             <p class="lead">자동차 항목</p>
             <hr class="my-4">
+            <input type="search" placeholder="검색" aria-label="Search" id="keydownEnter">
+            <button class="btn btn-primary " type="submit" onclick="fetchCarselectAll();">검색</button>
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -51,7 +50,6 @@
                         <th scope="col">COMPANY_ID</th>
                     </tr>
                 </thead>
-                <button onclick="tablelist();" name="차량조회" value="carinfor_obj">차량조회</button>
                 <tbody id="list"></tbody>
 
 
@@ -83,7 +81,7 @@
             © 2023 부트스트랩 예시. All Rights Reserved. | Designed by John Doe
         </div>
     </footer>
-    <script src="../js/carinforwithfunction.js"></script>
+    <script src="../js/listfunction.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

@@ -33,3 +33,15 @@ keydownObject.addEventListener('keydown', (event) => {
         tablelist();
     }
 });
+
+let url = 'http://localhost:8080/selectAll/CI002';
+let request = fetch(url)
+    .then(response => {
+        response.json();
+    })
+    .then(data => {
+        console.log(data);
+    })
+    .catch((data) => { //fetch로 받은 문자열의 문제가 생겼을때 catch 해당 에러를 받아내다.
+        console.log(data);
+    });
